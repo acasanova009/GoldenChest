@@ -1,5 +1,5 @@
 # GoldenChest
-Instead of having many  seeds phrases, this tool will help make a GoldenChest in which you can dumb your seeds. And keep everything safe inside.
+Instead of having many  seeds phrases, this tool will help make a GoldenChest in which you can dump your seeds. And keep everything safe inside.
 
 How to use
 
