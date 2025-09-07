@@ -22,6 +22,7 @@ At the end you should have 2 main things.
 
 2 - A bunch of shamir shares. Split them in secure locations.
 
-One great benefit is for inheritance. You can make a group of shares specifically for you family or loved ones.
-And even if you keep on updating the chest (password), you wont have to constantly keep updating them. Becuase their shamir shares can recreate the password. 
+One great benefit is for inheritance.
 -
+You can make a group of shares specifically for you family or loved ones.
+And even if you keep on updating the chest (password), you wont have to constantly keep updating them. Becuase their shamir shares can recreate the password. 
