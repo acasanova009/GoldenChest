@@ -4,10 +4,15 @@ Instead of having many  seeds phrases, this tool will help make a GoldenChest in
 How to use
 
 Step 1 - Download page and use offline
+
 Step 2 - Make a text file will of the important stuff
+
 Step 3 - Get a random seed phrase generator or strong password.
+
 Step 4 - Use the Cifrado de Texto (AES-GCM). Save the output. (This is your golden chest)
+
 Step 5 - Split your password with shamir shares. And backthem up. 
+
 Step 6 - Erease the password.
 
 At the end you should have 2 main things.
