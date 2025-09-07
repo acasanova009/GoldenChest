@@ -11,7 +11,7 @@ Step 3 - Get a strong password or phrase to lock the golden chest.
 
 Step 4 - Use the Cifrado de Texto (AES-GCM). Save the output. (This is your golden chest)
 
-Step 5 - Split your password with shamir shares. And backthem up. 
+Step 5 - Split your password with shamir shares. And back them up. 
 
 Step 6 - Erase the password.
 
