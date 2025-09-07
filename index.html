@@ -3,16 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Llaves para el Cofre del Tesoro</title>
+  <title>Golden Chest</title>
   <style>
-    :root{
-      --bg:#0b0f1a; --card:#121829; --muted:#9aa4b2; --accent:#7c5cff; --accent2:#00d4ff;
-      --border:#1e263d; --ok:#27ae60; --err:#e74c3c; --text:#e6ecf2; --input:#0d1428; --out:#0a1122;
-    }
+   :root{
+  --bg:#0b0f1a;
+  --card:#121829;
+  --muted:#9aa4b2;
+  --accent:#f5d142;   /* light golden yellow */
+  --accent2:#c99200;  /* deeper golden */
+  --border:#1e263d;
+  --ok:#27ae60;
+  --err:#e74c3c;
+  --text:#e6ecf2;
+  --input:#0d1428;
+  --out:#0a1122;
+}
+
     .light{
-      --bg:#f6f7fb; --card:#ffffff; --muted:#596274; --accent:#6b4bff; --accent2:#00a8d6;
-      --border:#dfe4ef; --ok:#1e874c; --err:#c0392b; --text:#0b1220; --input:#f1f3fa; --out:#eef2ff;
-    }
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --muted:#596274;
+  --accent:#f7d85f;   /* warm yellow */
+  --accent2:#d4a017;  /* gold */
+  --border:#dfe4ef;
+  --ok:#1e874c;
+  --err:#c0392b;
+  --text:#0b1220;
+  --input:#f1f3fa;
+  --out:#eef2ff;
+}
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -21,7 +41,8 @@
     }
     header{
       position:sticky; top:0; z-index:100;
-      background:linear-gradient(90deg,rgba(124,92,255,.15),rgba(0,212,255,.15));
+      background:linear-gradient(90deg, rgba(255,223,128,0.15), rgba(204,153,0,0.15));
+
       border-bottom:1px solid var(--border);
       backdrop-filter: blur(6px);
     }
@@ -54,13 +75,22 @@
     textarea{min-height:120px; resize:vertical;}
     .row{display:flex; gap:10px; flex-wrap:wrap}
     .row > *{flex:1}
-    .btn{
+    .btn, .btn.secondary{
       display:inline-flex; align-items:center; gap:8px;
       background:linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
       color:#0a0d18; font-weight:700; border:none; border-radius:999px; padding:10px 14px; cursor:pointer;
     }
-    .btn.secondary{background:#18213a; color:#e6ecf2; border:1px solid var(--border);}
-    .light .btn.secondary{background:#f3f5ff; color:#0b1220;}
+    /* Hover effect */
+.btn:hover{
+  background: #f5d142; /* original yellow tone */
+}
+
+/* Click (active) effect */
+.btn:active{
+  transform: scale(0.97);
+  /*background:linear-gradient(90deg, #ffe58f 0%, #d4af37 100%); /* golden flash */
+}
+    
     .btn:disabled{opacity:.6; cursor:not-allowed}
     .muted{color:var(--muted); font-size:.9rem}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
@@ -85,12 +115,12 @@
       <div class="left">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Llaves para el Cofre del Tesoro</h1>
-          <p class="muted">Cifra tu mensaje y reparte acciones del secreto para recuperarlo con un umbral.</p>
+          <h1>Golden Chest</h1>
+          <p class="muted">Encrypt and decrypt you GoldenChest, and split the original key.</p>
         </div>
       </div>
       <div class="toggle-wrap">
-        <button id="themeBtn" class="iconbtn" title="Cambiar tema">🌙/☀️ Tema</button>
+        <button id="themeBtn" class="iconbtn" title="Change theme">🌙/☀️ Theme</button>
       </div>
     </div>
   </header>
@@ -98,51 +128,53 @@
   <main>
     <div class="wrap grid">
 <section class="card full" id="shamir">
-        <h2>Shamir Secret Sharing (GF(256))</h2>
-        <label for="shamir-secret">Secreto</label>
-        <input type="text" id="shamir-secret" placeholder="Texto (UTF‑8) o 0xHEX" />
+        <h2>Shamir Secret Sharing</h2>
+        <label for="shamir-secret">Secret</label>
+        <input type="text" id="shamir-secret" placeholder="Text (UTF‑8) or 0xHEX" />
         <div class="row">
           <div>
-            <label for="shamir-n">Participantes (n)</label>
+            <label for="shamir-n">Participants (n)</label>
             <input type="number" id="shamir-n" min="2" value="5"/>
           </div>
           <div>
-            <label for="shamir-t">Umbral (t)</label>
+            <label for="shamir-t">Threshold (t)</label>
             <input type="number" id="shamir-t" min="2" value="3"/>
           </div>
         </div>
 
         <div class="row" style="margin-top:8px">
-          <button class="btn" id="btn-split">Dividir</button>
-          <button class="btn secondary" id="btn-join">Reconstruir</button>
+          <button class="btn" id="btn-split">Split</button>
+          <button class="btn secondary" id="btn-join">Reconstruct</button>
           
           
         </div>
 
-        <div class="muted small" style="margin-top:10px">Acciones (una por línea, formato <code>x:HEX</code>)</div>
-        <textarea id="shamir-shares" placeholder="Ejemplo:
-1:4fa1b2
+        <div class="muted small" style="margin-top:10px">Shares (one per line, format <code>x:HEX</code>)</div>
+        <textarea id="shamir-shares" placeholder="Example:
+5:4fa1b2
 2:03c9aa
-3:..."></textarea>
+8:8f4w2f
+3:...
+"></textarea>
 
-        <div class="muted small" style="margin-top:10px">Salida</div>
+        <div class="muted small" style="margin-top:10px">Output</div>
         <div class="out mono small" id="shamir-out"></div>
       </section>
 <section class="card full" id="aes">
-        <h2>Cifrado de texto (AES‑GCM)</h2>
+        <h2>Text Encryption (AES‑GCM)</h2>
         <div class="pw-wrap">
-          <label for="aes-pass">Contraseña</label>
-          <input type="password" id="aes-pass" placeholder="Escribe una contraseña segura" />
-          <button id="togglePass" aria-label="Mostrar u ocultar contraseña">👁️</button>
+          <label for="aes-pass">Password</label>
+          <input type="password" id="aes-pass" placeholder="Enter a secure password" />
+          <button id="togglePass" aria-label="Show or hide password">👁️</button>
         </div>
-        <label for="aes-plain">Texto</label>
-        <textarea id="aes-plain" placeholder="Texto plano para cifrar o texto cifrado Base64 para descifrar"></textarea>
+        <label for="aes-plain">Text</label>
+        <textarea id="aes-plain" placeholder="Plain text to encrypt or Base64 encrypted text to decrypt"></textarea>
         <div class="row" style="margin-top:8px">
-          <button class="btn" id="btn-encrypt">Cifrar</button>
-          <button class="btn secondary" id="btn-decrypt">Descifrar</button>
-          <button class="btn secondary" id="btn-copy-aes" title="Copiar salida">Copiar salida</button>
+          <button class="btn" id="btn-encrypt">Encrypt</button>
+          <button class="btn secondary" id="btn-decrypt">Decrypt</button>
+          <button class="btn secondary" id="btn-copy-aes" title="Copy output">Copy output</button>
         </div>
-        <div class="muted small" style="margin-top:10px">Salida</div>
+        <div class="muted small" style="margin-top:10px">Output</div>
         <div class="out mono small" id="aes-out"></div>
       </section>
       <!-- AES (arriba) -->
@@ -154,11 +186,11 @@
   </main>
 
   <footer class="wrap muted small" style="text-align:center">
-    Hecho para mi familia.
+    Made for my family.
   </footer>
 
 <script>
-// ========= Tema día/noche =========
+// ========= Theme día/noche =========
 const root = document.documentElement;
 const savedTheme = localStorage.getItem('theme') || 'dark';
 if(savedTheme==='light') document.body.classList.add('light');
@@ -207,7 +239,7 @@ async function deriveKey(password, salt){
 async function aesEncrypt(){
   const pass = $('#aes-pass').value;
   const text = $('#aes-plain').value;
-  if(!pass || !text){ $('#aes-out').textContent='Falta contraseña o texto.'; return; }
+  if(!pass || !text){ $('#aes-out').textContent='Missing password or text.'; return; }
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const key = await deriveKey(pass, salt);
@@ -220,9 +252,9 @@ async function aesDecrypt(){
   try{
     const pass = $('#aes-pass').value;
     const b64 = $('#aes-plain').value.trim();
-    if(!pass || !b64){ $('#aes-out').textContent='Falta contraseña o texto cifrado.'; return; }
+    if(!pass || !b64){ $('#aes-out').textContent='Missing password or encrypted text.'; return; }
     const packed = b64d(b64);
-    if(packed.length < 29) throw new Error('Formato incorrecto.');
+    if(packed.length < 29) throw new Error('Incorrect format.');
     const salt = packed.slice(0,16);
     const iv = packed.slice(16,28);
     const ct = packed.slice(28);
@@ -230,7 +262,7 @@ async function aesDecrypt(){
     const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ct);
     $('#aes-out').textContent = dec.decode(pt);
   }catch(e){
-    $('#aes-out').textContent = 'Error al descifrar: ' + e.message;
+    $('#aes-out').textContent = 'Error decrypting: ' + e.message;
   }
 }
 $('#btn-encrypt').addEventListener('click', aesEncrypt);
@@ -323,11 +355,11 @@ $('#btn-split').addEventListener('click', () => {
     const n = parseInt($('#shamir-n').value,10);
     const t = parseInt($('#shamir-t').value,10);
     let secret = parseSecretInput($('#shamir-secret').value || '');
-    if(secret.length===0) throw new Error('Secreto vacío.');
+    if(secret.length===0) throw new Error('Empty secret.');
     const shares = shamirSplit(secret, n, t);
     const lines = shares.map(s => `${s.x}:${toHex(s.y)}`);
     $('#shamir-shares').value = lines.join('\n');
-    $('#shamir-out').textContent = `Acciones generadas (${t}-de-${n}). Longitud por acción: ${shares[0].y.length} bytes.`;
+    $('#shamir-out').textContent = `Shares generated (${t}-de-${n}). Length per share: ${shares[0].y.length} bytes.`;
   }catch(e){
     $('#shamir-out').textContent = 'Error: ' + e.message;
   }
@@ -338,7 +370,7 @@ $('#btn-join').addEventListener('click', () => {
     const lines = $('#shamir-shares').value.trim().split(/\n+/).filter(Boolean);
     const shares = lines.map(line => {
       const m = line.trim().match(/^(\d+)\s*:\s*([0-9a-fA-F]+)$/);
-      if(!m) throw new Error(`Línea inválida: ${line}`);
+      if(!m) throw new Error(`Invalid line: ${line}`);
       return { x: parseInt(m[1],10), y: fromHex(m[2]) };
     });
     const secret = shamirJoin(shares);
@@ -353,7 +385,7 @@ $('#btn-join').addEventListener('click', () => {
     // 
 
 
-    const msg = `Secreto (HEX): 0x${toHex(secret)}\n` + (decoded ? `Secreto (UTF‑8): ${decoded}` : '');
+    const msg = `Secret (HEX): 0x${toHex(secret)}\n` + (decoded ? `Secret (UTF‑8): ${decoded}` : '');
     $('#shamir-out').textContent = msg;
   }catch(e){
     $('#shamir-out').textContent = 'Error: ' + e.message;
