@@ -115,7 +115,7 @@
         <div class="row" style="margin-top:8px">
           <button class="btn" id="btn-split">Dividir</button>
           <button class="btn secondary" id="btn-join">Reconstruir</button>
-          <button class="btn secondary" id="btn-copy-shamir-all" title="Copiar x:HEX">Copiar salida</button>
+          
           
         </div>
 
@@ -343,6 +343,16 @@ $('#btn-join').addEventListener('click', () => {
     });
     const secret = shamirJoin(shares);
     let decoded; try{ decoded = dec.decode(secret); }catch{ decoded = null; }
+
+      // 
+    if (decoded && decoded.length) {
+      $('#aes-pass').value = decoded;
+      // (optional) give a tiny visual cue:
+      $('#aes-pass').animate([{outline:'2px solid var(--accent)'},{outline:'none'}], {duration:800});
+    }
+    // 
+
+
     const msg = `Secreto (HEX): 0x${toHex(secret)}\n` + (decoded ? `Secreto (UTF‑8): ${decoded}` : '');
     $('#shamir-out').textContent = msg;
   }catch(e){
