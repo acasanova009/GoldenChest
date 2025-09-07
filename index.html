@@ -81,8 +81,13 @@
       color:#0a0d18; font-weight:700; border:none; border-radius:999px; padding:10px 14px; cursor:pointer;
     }
     /* Hover effect */
-.btn:hover{
+.btn:hover {
   background: #f5d142; /* original yellow tone */
+}
+
+#themeBtn:hover
+{
+  background: #949494; /* original yellow tone */
 }
 
 /* Click (active) effect */
@@ -116,7 +121,7 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Golden Chest</h1>
-          <p class="muted">Encrypt and decrypt you GoldenChest, and split the original key.</p>
+          <p class="muted">Encrypt and decrypt your Golden Chest with a key, and split that key in many shares.</p>
         </div>
       </div>
       <div class="toggle-wrap">
@@ -128,18 +133,24 @@
   <main>
     <div class="wrap grid">
 <section class="card full" id="shamir">
-        <h2>Shamir Secret Sharing</h2>
-        <label for="shamir-secret">Secret</label>
+        <h2>Split Key</h2>
+        <p class="muted">
+  Use the advanced Shamir Secret Sharing algorithm to split a key into many shares — requiring only <em>t</em> out of <em>n</em> to recover it.  
+  Example: <strong>3 out of 5 shares</strong>.
+</p>
+        <label for="shamir-secret">Key</label>
         <input type="text" id="shamir-secret" placeholder="Text (UTF‑8) or 0xHEX" />
         <div class="row">
-          <div>
-            <label for="shamir-n">Participants (n)</label>
-            <input type="number" id="shamir-n" min="2" value="5"/>
-          </div>
+          
           <div>
             <label for="shamir-t">Threshold (t)</label>
             <input type="number" id="shamir-t" min="2" value="3"/>
           </div>
+          <div>
+            <label for="shamir-n">Participants (n)</label>
+            <input type="number" id="shamir-n" min="2" value="5"/>
+          </div>
+          
         </div>
 
         <div class="row" style="margin-top:8px">
@@ -161,14 +172,18 @@
         <div class="out mono small" id="shamir-out"></div>
       </section>
 <section class="card full" id="aes">
-        <h2>Text Encryption (AES‑GCM)</h2>
+        <h2>Golden Chest Encryption & Decryption</h2>
+<p class="muted">
+  Encrypt and decrypt your Golden Chest content using AES-GCM, with keys derived from your password via PBKDF2 (500,000 iterations) for strong protection.
+</p>
+
         <div class="pw-wrap">
-          <label for="aes-pass">Password</label>
+          <label for="aes-pass">Key</label>
           <input type="password" id="aes-pass" placeholder="Enter a secure password" />
           <button id="togglePass" aria-label="Show or hide password">👁️</button>
         </div>
-        <label for="aes-plain">Text</label>
-        <textarea id="aes-plain" placeholder="Plain text to encrypt or Base64 encrypted text to decrypt"></textarea>
+        <label for="aes-plain">Golden Chest Content</label>
+        <textarea id="aes-plain" placeholder="Plain text to encrypt (e.g., your seed phrases) or Base64 ciphertext to decrypt"></textarea>
         <div class="row" style="margin-top:8px">
           <button class="btn" id="btn-encrypt">Encrypt</button>
           <button class="btn secondary" id="btn-decrypt">Decrypt</button>
