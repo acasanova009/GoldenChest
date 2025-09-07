@@ -5,11 +5,11 @@ How to use set up the Golden Chest
 -
 Step 1 - Download page and use offline
 
-Step 2 - Make a text file will of the important stuff
+Step 2 - Write down a .txt file with all the important stuff. Eg. Seed phrases.
 
-Step 3 - Get a strong password or phrase to lock the golden chest.
+Step 3 - Get a strong password or phrase to lock the golden chest. (Use a random passphrase generator recomended).
 
-Step 4 - Use the Cifrado de Texto (AES-GCM). Save the output. (This is your golden chest)
+Step 4 - Use the Text Encryption (AES-GCM). Save the output. (This is your golden chest)
 
 Step 5 - Split your password with shamir shares. For example 3 minimum out of 5. And back them up. 
 
