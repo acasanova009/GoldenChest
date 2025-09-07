@@ -52,10 +52,16 @@
     }
     .left{display:flex; gap:18px; align-items:center}
     .hero .logo{
-      width:60px; height:60px; border-radius:14px;
-      background: radial-gradient(100% 100% at 30% 30%, var(--accent) 0%, var(--accent2) 100%);
-      box-shadow: 0 10px 24px rgba(0,0,0,.20), inset 0 0 18px rgba(255,255,255,.18);
-    }
+  width:60px;
+  height:60px;
+  border-radius:14px;
+  background: radial-gradient(100% 100% at 30% 30%, var(--accent) 0%, var(--accent2) 100%);
+  box-shadow: 0 10px 24px rgba(0,0,0,.20), inset 0 0 18px rgba(255,255,255,.18);
+   min-width:60px;
+  min-height:60px;
+  flex-shrink:0;
+}
+
     .hero h1{margin:0; font-weight:700; letter-spacing:.3px;}
     .hero p{margin:.2rem 0 0; color:var(--muted); max-width:60ch}
     main{padding:22px 0 60px;}
