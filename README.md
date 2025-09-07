@@ -1,7 +1,7 @@
 # GoldenChest
 Instead of having many  seeds phrases, this tool will help make a GoldenChest in which you can dump your seeds. And keep everything safe inside.
 -
-How to use
+How to use set up the Golden Chest
 -
 Step 1 - Download page and use offline
 
@@ -11,9 +11,20 @@ Step 3 - Get a strong password or phrase to lock the golden chest.
 
 Step 4 - Use the Cifrado de Texto (AES-GCM). Save the output. (This is your golden chest)
 
-Step 5 - Split your password with shamir shares. And back them up. 
+Step 5 - Split your password with shamir shares. For example 3 minimum out of 5. And back them up. 
 
 Step 6 - Erase the password.
+
+How to open the Golden Chest or update contents.
+-
+
+Step 1 - Download page and use offline
+
+Step 2 - Get the minimum quiantity of shares required, earlier we said 3. So get 3. Click reconstruct.
+
+Step 3 - From the GoldenChest file in which you pasted all of your characters, copy and paste them in the text area below AES‑GCM. And click decrypt.
+
+Step 4 - Update info if required, and encrypt with the same password.
 
 --------------------------------------------
 At the end you should have 2 main things.
