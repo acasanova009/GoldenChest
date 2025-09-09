@@ -1,5 +1,5 @@
 # GoldenChest
-Instead of having many  seeds phrases, this tool will help make a GoldenChest in which you can dump your seeds. And keep everything safe inside.
+Encrypt and decrypt your Golden Chest — the ultimate vault for your most critical information. With a single key split into multiple shares.
 -
 How to use set up the Golden Chest
 -
