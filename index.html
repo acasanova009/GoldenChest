@@ -406,7 +406,7 @@ $('#btn-join').addEventListener('click', () => {
     // 
 
 
-    const msg = `Secret (HEX): 0x${toHex(secret)}\n` + (decoded ? `Secret (UTF‑8): ${decoded}` : '');
+    const msg =  (decoded ? `${decoded}` : '');
     $('#shamir-out').textContent = msg;
   }catch(e){
     $('#shamir-out').textContent = 'Error: ' + e.message;
